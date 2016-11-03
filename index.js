@@ -29,7 +29,6 @@ function addToCart(item){
 
 function viewCart(){
 	if(cart.length === 0){
-		 // "Your shopping cart is empty."
 		console.log("Your shopping cart is empty.")
 	} else {
 		var string = "In your cart, you have "
@@ -40,8 +39,7 @@ function viewCart(){
 			string+= `${name} at $${price}`
 			if(i < cart.length - 1){
 				string += ', '
-			}
-			else{
+			} else {
 				string += '.'
 			}
 		}
@@ -61,7 +59,7 @@ function viewCart(){
 //    let both = cart[i]
 //    let item = Object.keys(both)[0]
 //    let price = both[item]
-//    words.push(`${item} at \$${price}`) 
+//    words.push(`${item} at \$${price}`)
 //    }
 //  console.log(`In your cart, you have ${words.join(', ')}.`)
 // }
@@ -76,17 +74,11 @@ function placeOrder(cc_num = false){
 	}
 }
 
-function removeFromCart(item_name){
-	if (!(item_name in cart)){
-		console.log("That item is not in your cart.")
-	}
-	else{
-		delete cart[item_name]
-		return cart
-	}
-	cart = []
+function removeFromCart(itemName){
+  for (var i = 0; i < cart.length; i++) {
+    if(cart[i].hasOwnProperty(itemName)){
+      return cart.splice(i, 1)
+    }
+  }
+  console.log('That item is not in your cart.')
 }
-
-
-
-
